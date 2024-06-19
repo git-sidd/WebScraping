@@ -1,0 +1,24 @@
+import requests
+from bs4 import BeautifulSoup
+import sys
+import io
+
+# Set the encoding for stdout to utf-8
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+
+url="https://timesofindia.indiatimes.com"
+#step !:Get the Html Content
+r=requests.get(url)
+htmlContent=r.content
+#printing all html code 
+#print(htmlContent)
+#step 2: parse the HTML content
+# soup=BeautifulSoup(url,'html.parser')
+# print(soup.prettify())
+#Html tree traversal
+
+def fetchDataAndSaveToFile(url,path):
+    with open(path,"w")as f:
+        f.write(r.text.encode('utf-8').decode('utf-8'))
+
+fetchDataAndSaveToFile(url,"Data/times.html")        
